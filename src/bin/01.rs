@@ -60,9 +60,6 @@ pub fn part_two(input: &str) -> Option<u64> {
             zero_count += 1;
             position -= 100;
         }
-
-        println!("Position: {}", position);
-
     }
     return Some(zero_count);
 }

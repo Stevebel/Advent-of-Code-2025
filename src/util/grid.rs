@@ -55,6 +55,33 @@ impl<T: Copy> Grid<T> {
     }
 }
 
+impl<T: PartialEq + Copy> Grid<T> {
+    #[inline]
+    pub fn get_first_point(&self, value: T) -> Option<Point> {
+        for y in 0..self.height {
+            for x in 0..self.width {
+                if self.get(x, y) == value {
+                    return Some(Point::new(x as isize, y as isize));
+                }
+            }
+        }
+        None
+    }
+
+    #[inline]
+    pub fn get_points(&self, value: T) -> Vec<Point> {
+        let mut points = Vec::new();
+        for y in 0..self.height {
+            for x in 0..self.width {
+                if self.get(x, y) == value {
+                    points.push(Point::new(x as isize, y as isize));
+                }
+            }
+        }
+        points
+    }
+}
+
 impl<T: Copy> Index<Point> for Grid<T> {
     type Output = T;
 
